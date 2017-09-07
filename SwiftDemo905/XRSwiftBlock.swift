@@ -8,11 +8,13 @@
 
 import UIKit
 
-class PresentViewController: UIViewController {
+// 1.定义一个闭包类型
+//格式: typealias 闭包名称 = (参数名称: 参数类型) -> 返回值类型
+typealias swiftBlock = (_ str: String) -> Void
 
-    // 1.定义一个闭包类型
-    //格式: typealias 闭包名称 = (参数名称: 参数类型) -> 返回值类型
-    typealias swiftBlock = (_ str: String) -> Void
+class XRSwiftBlock: UIViewController {
+
+
     
     //2. 声明一个变量
     var callBack: swiftBlock?
@@ -39,7 +41,7 @@ class PresentViewController: UIViewController {
         theButton.backgroundColor = UIColor.red
         theButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         theButton.setTitle("change color", for: UIControlState.normal)
-        theButton.titleLabel?.font = UIFont.init(name: "Menlo", size: 15)
+        theButton.titleLabel?.font = UIFont.menlo(fontSize: 15)
         theButton.tag = 66;
         theButton.layer.cornerRadius = theButton.height/2
         theButton .addTarget(self, action: #selector(goBackAndTakeText(sender:)), for: UIControlEvents.touchUpInside)
@@ -50,18 +52,15 @@ class PresentViewController: UIViewController {
         
         self.dismiss(animated: true) { 
             
-            
-//            self.callBack == nil ?: self.callBack!("这里的闭包传递了一个字符串")
-            
             if self.callBack != nil {
                 
-                self.callBack!("这里的闭包传递了一个字符串")
+                self.callBack!((self.input?.text!)!)
             }
         }
     }
     
     //3. 定义一个方法,方法的参数为和swiftBlock类型一致的闭包,并赋值给callBack
-    open func callBackBlock(_ block: @escaping swiftBlock) {
+    func callBackBlock(_ block: @escaping swiftBlock) {
         
         callBack = block
     }

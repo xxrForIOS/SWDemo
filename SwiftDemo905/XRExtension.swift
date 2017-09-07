@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XExtension: NSObject {
+class XRExtension: NSObject {
 
 }
 
@@ -16,7 +16,7 @@ class XExtension: NSObject {
 extension UIColor {
 
     //http://www.hangge.com/blog/cache/detail_1413.html
-    open class var XXrandom__: UIColor {
+    open class var random: UIColor {
         
         get {
             
@@ -28,18 +28,7 @@ extension UIColor {
     }
 }
 
-extension UIColor {
-    
-    class var random:UIColor {
-        
-        let red = CGFloat(arc4random()%256)/255.0
-        let green = CGFloat(arc4random()%256)/255.0
-        let blue = CGFloat(arc4random()%256)/255.0
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
-    }
-}
-
-//MARK:- UIView
+//MARK:- view
 extension UIView {
     
     
@@ -86,5 +75,14 @@ extension UIView {
         var rect = self.frame
         rect.size.width = height
         self.frame = rect
+    }
+}
+
+//MARK:- font
+extension UIFont {
+    
+    class func menlo(fontSize: CGFloat) -> (UIFont){
+        
+        return UIFont.init(name: "Menlo", size: fontSize)!
     }
 }

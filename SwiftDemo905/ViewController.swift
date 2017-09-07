@@ -21,26 +21,26 @@ class ViewController: UIViewController {
         theButton.backgroundColor = UIColor.red
         theButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         theButton.setTitle("change color", for: UIControlState.normal)
-        theButton.titleLabel?.font = UIFont.init(name: "Menlo", size: 15)
+        theButton.titleLabel?.font = UIFont.menlo(fontSize: 15)
         theButton.tag = 66;
         theButton.layer.cornerRadius = theButton.height/2
         theButton .addTarget(self, action: #selector(changeBackGroundColor(sender:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(theButton)
         
+
         self.view.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(changeButtonBackGroundColor)))
     }
     
     func changeButtonBackGroundColor(){
 
-        let vcc:UIViewController = PresentViewController()
-//        vcc.callBackBlock =
-        self.present(vcc, animated: true) {
-                
-                
+        let vcc = XRSwiftBlock()
+        self.present(vcc, animated: true)
+        vcc.callBackBlock { (String) in
+            
+            let theButton:UIButton = self.view.viewWithTag(66) as! UIButton
+            theButton.setTitle(String, for: UIControlState.normal)
+            print("xx get %@",String)
         }
-        
-//        let theButton = self.view.viewWithTag(66) as! UIButton
-//        theButton.backgroundColor = UIColor.random;
     }
 
     func changeBackGroundColor(sender:UIButton) {
